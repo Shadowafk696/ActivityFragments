@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Amazon Books</string>
+    <string name="title_item_detail">Details</string>
+</resources>
