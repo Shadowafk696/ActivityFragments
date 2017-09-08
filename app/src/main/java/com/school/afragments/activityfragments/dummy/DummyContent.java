@@ -25,21 +25,11 @@ public class DummyContent {
 
     private static final int COUNT = 25;
 
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
-        }
-    }
-
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), String.valueOf(position));
-    }
 
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
@@ -55,26 +45,27 @@ public class DummyContent {
      */
     public static class DummyItem {
         public final String id;
-        public String book_name;
-        public String meaning;
-        final String image;
+        public final String book_name;
+        public final String link;
+        public final String image;
 
-        DummyItem(String id, String book_name, String meaning, String image) {
+        public DummyItem(String id, String book_name, String link,
+                         String book_image) {
             this.id = id;
             this.book_name = book_name;
-            this.meaning = meaning;
-            this.image = image;
-
+            this.link = link;
+            this.image = book_image;
         }
 
         @Override
         public String toString() {
-            return meaning;
+            return book_name;
         }
     }
+
     static {
-        addItem(new DummyItem("1","Lord of the Files","A story of some guy","https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg"));
-        addItem(new DummyItem("2","Lord of the Files","A story of some guy","https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg"));
-        addItem(new DummyItem("3","Lord of the Files","A story of some guy","https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg"));
+        addItem(new DummyItem("1", "Judge", "https://www.amazon.com/Judge-Paul-Madriani-Novel/dp/0515119644", "https://images-na.ssl-images-amazon.com/images/I/514b69L1fEL._SX304_BO1,204,203,200_.jpg"));
+        addItem(new DummyItem("2", "IT", "https://www.amazon.com/Novel-Stephen-King/dp/1501175467/ref=sr_1_1?s=books&ie=UTF8&qid=1504831532&sr=1-1&keywords=IT", "https://lareviewofbooks-org-cgwbfgl6lklqqj3f4t3.netdna-ssl.com/wp-content/uploads/2016/09/paavpdqsbtggtmn4smxs.png"));
+        addItem(new DummyItem("3", "The Maze Runner", "https://www.amazon.com/Maze-Runner-Book-1/dp/0385737955/ref=sr_1_1?s=books&ie=UTF8&qid=1504831583&sr=1-1&keywords=maze+runner", "https://upload.wikimedia.org/wikipedia/en/d/db/The_Maze_Runner_cover.png"));
     }
 }

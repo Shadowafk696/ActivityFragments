@@ -1,9 +1,22 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_detail"
-    style="?android:attr/textAppearanceLarge"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context="com.school.afragments.activityfragments.ItemDetailFragment" />
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/item_detail"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="com.school.afragments.activityfragments.ItemDetailFragment" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/my_image_view"
+        android:layout_gravity="center"
+        android:layout_width="230dp"
+        android:layout_height="400dp"
+        />
+
+</LinearLayout>

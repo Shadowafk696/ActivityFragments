@@ -1,16 +1,20 @@
 package com.school.afragments.activityfragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+
 import com.school.afragments.activityfragments.dummy.DummyContent;
 
 /**
@@ -38,10 +42,8 @@ public class ItemDetailFragment extends Fragment {
     public ItemDetailFragment() {
     }
 
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
@@ -51,8 +53,18 @@ public class ItemDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.meaning);
+                appBarLayout.setTitle(mItem.book_name);
             }
+            FloatingActionButton fab = getActivity().findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    Log.d("LINK", mItem.link);
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mItem.link));
+                    startActivity(browserIntent);
+                }
+            });
         }
     }
 
@@ -63,9 +75,12 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.meaning);
-            Uri url = Uri.parse("https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg");
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.link);
+
+            Uri uri = Uri.parse(mItem.image);
             SimpleDraweeView draweeView = rootView.findViewById(R.id.my_image_view);
+            draweeView.setImageURI(uri);
+
         }
 
         return rootView;
